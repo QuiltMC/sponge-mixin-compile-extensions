@@ -1,7 +1,7 @@
 /*
- * This file is part of fabric-mixin-compile-extensions, licensed under the MIT License (MIT).
+ * This file is part of sponge-mixin-compile-extensions, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2016, 2017, 2018, 2019 FabricMC
+ * Copyright (c) 2016, 2017, 2018, 2019 FabricMC, 2021 QuiltMC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package net.fabricmc.loom.mixin;
+package org.quiltmc.loom.mixin;
 
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.tools.obfuscation.interfaces.IMixinAnnotationProcessor;
@@ -32,7 +32,7 @@ import org.spongepowered.tools.obfuscation.service.ObfuscationTypeDescriptor;
 import java.util.Collection;
 import java.util.Set;
 
-public class ObfuscationServiceFabric implements IObfuscationService {
+public class ObfuscationServiceQuilt implements IObfuscationService {
 	public static final String IN_MAP_FILE = "inMapFile";
 	public static final String IN_MAP_EXTRA_FILES = "inMapExtraFiles";
 	public static final String OUT_MAP_FILE = "outMapFile";
@@ -44,17 +44,17 @@ public class ObfuscationServiceFabric implements IObfuscationService {
 	private ObfuscationTypeDescriptor createObfuscationType(String from, String to) {
 		return new ObfuscationTypeDescriptor(
 			from + ":" + to,
-			asSuffixed(ObfuscationServiceFabric.IN_MAP_FILE, from, to),
-			asSuffixed(ObfuscationServiceFabric.IN_MAP_EXTRA_FILES, from, to),
-			asSuffixed(ObfuscationServiceFabric.OUT_MAP_FILE, from, to),
+			asSuffixed(ObfuscationServiceQuilt.IN_MAP_FILE, from, to),
+			asSuffixed(ObfuscationServiceQuilt.IN_MAP_EXTRA_FILES, from, to),
+			asSuffixed(ObfuscationServiceQuilt.OUT_MAP_FILE, from, to),
 			ObfuscationEnvironmentFabric.class
 		);
 	}
 
 	private void addSupportedOptions(ImmutableSet.Builder<String> builder, String from, String to) {
-		builder.add(asSuffixed(ObfuscationServiceFabric.IN_MAP_FILE, from, to));
-		builder.add(asSuffixed(ObfuscationServiceFabric.IN_MAP_EXTRA_FILES, from, to));
-		builder.add(asSuffixed(ObfuscationServiceFabric.OUT_MAP_FILE, from, to));
+		builder.add(asSuffixed(ObfuscationServiceQuilt.IN_MAP_FILE, from, to));
+		builder.add(asSuffixed(ObfuscationServiceQuilt.IN_MAP_EXTRA_FILES, from, to));
+		builder.add(asSuffixed(ObfuscationServiceQuilt.OUT_MAP_FILE, from, to));
 	}
 
 	@Override

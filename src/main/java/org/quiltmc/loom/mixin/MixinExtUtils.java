@@ -1,7 +1,7 @@
 /*
- * This file is part of fabric-mixin-compile-extensions, licensed under the MIT License (MIT).
+ * This file is part of sponge-mixin-compile-extensions, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2016, 2017, 2018, 2019 FabricMC
+ * Copyright (c) 2016, 2017, 2018, 2019 FabricMC, 2021 QuiltMC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,29 +22,14 @@
  * SOFTWARE.
  */
 
-package net.fabricmc.loom.mixin;
+package org.quiltmc.loom.mixin;
 
-import org.spongepowered.tools.obfuscation.ObfuscationEnvironment;
-import org.spongepowered.tools.obfuscation.ObfuscationType;
-import org.spongepowered.tools.obfuscation.mapping.IMappingProvider;
-import org.spongepowered.tools.obfuscation.mapping.IMappingWriter;
+public final class MixinExtUtils {
+	private MixinExtUtils() {
 
-import javax.annotation.processing.Filer;
-import javax.annotation.processing.Messager;
-
-public class ObfuscationEnvironmentFabric extends ObfuscationEnvironment {
-	protected ObfuscationEnvironmentFabric(ObfuscationType type) {
-		super(type);
 	}
 
-	@Override
-	protected IMappingProvider getMappingProvider(Messager messager, Filer filer) {
-		String[] key = type.getKey().split(":");
-		return new MixinMappingProviderTiny(messager, filer, key[0], key[1]);
-	}
-
-	@Override
-	protected IMappingWriter getMappingWriter(Messager messager, Filer filer) {
-		return new MixinMappingWriterTiny(messager, filer);
+	public static String capitalize(String s) {
+		return s.substring(0, 1).toUpperCase() + s.substring(1);
 	}
 }

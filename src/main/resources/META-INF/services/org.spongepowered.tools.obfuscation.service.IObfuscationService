@@ -1,1 +1,1 @@
-net.fabricmc.loom.mixin.ObfuscationServiceFabric
+org.quiltmc.loom.mixin.ObfuscationServiceQuilt

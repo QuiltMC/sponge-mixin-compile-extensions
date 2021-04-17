@@ -1,7 +1,7 @@
 /*
- * This file is part of fabric-mixin-compile-extensions, licensed under the MIT License (MIT).
+ * This file is part of sponge-mixin-compile-extensions, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2016, 2017, 2018, 2019 FabricMC
+ * Copyright (c) 2016, 2017, 2018, 2019 FabricMC, 2021 QuiltMC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package net.fabricmc.loom.mixin;
+package org.quiltmc.loom.mixin;
 
 import org.spongepowered.asm.obfuscation.mapping.common.MappingField;
 import org.spongepowered.asm.obfuscation.mapping.common.MappingMethod;
