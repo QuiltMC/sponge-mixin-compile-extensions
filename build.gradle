@@ -8,7 +8,7 @@ targetCompatibility = 1.8
 
 group = 'org.quiltmc'
 archivesBaseName = project.name
-version = '1.0.1'
+version = '1.0.2'
 
 def ENV = System.getenv()
 version = version + (ENV.GITHUB_ACTIONS ? "" : "+local")
@@ -59,7 +59,7 @@ publishing {
 			version project.version
 
 			from components["java"]
-	
+
 			artifact sourcesJar
 			artifact javadocJar
 		}

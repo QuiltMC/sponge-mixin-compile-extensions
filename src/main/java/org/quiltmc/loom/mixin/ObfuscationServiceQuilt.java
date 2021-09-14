@@ -60,12 +60,12 @@ public class ObfuscationServiceQuilt implements IObfuscationService {
 	@Override
 	public Set<String> getSupportedOptions() {
 		ImmutableSet.Builder<String> builder = new ImmutableSet.Builder<>();
-		addSupportedOptions(builder, "official", "intermediary");
+		addSupportedOptions(builder, "official", "hashed");
 		addSupportedOptions(builder, "official", "named");
-		addSupportedOptions(builder, "intermediary", "official");
-		addSupportedOptions(builder, "intermediary", "named");
+		addSupportedOptions(builder, "hashed", "official");
+		addSupportedOptions(builder, "hashed", "named");
 		addSupportedOptions(builder, "named", "official");
-		addSupportedOptions(builder, "named", "intermediary");
+		addSupportedOptions(builder, "named", "hashed");
 		return builder.build();
 	}
 
@@ -77,12 +77,12 @@ public class ObfuscationServiceQuilt implements IObfuscationService {
 	// Hook preserved for Mixin 0.7 backward compatibility
 	public Collection<ObfuscationTypeDescriptor> getObfuscationTypes() {
 		return ImmutableSet.of(
-				createObfuscationType("official", "intermediary"),
+				createObfuscationType("official", "hashed"),
 				createObfuscationType("official", "named"),
-				createObfuscationType("intermediary", "official"),
-				createObfuscationType("intermediary", "named"),
+				createObfuscationType("hashed", "official"),
+				createObfuscationType("hashed", "named"),
 				createObfuscationType("named", "official"),
-				createObfuscationType("named", "intermediary")
+				createObfuscationType("named", "hashed")
 		);
 	}
 }
