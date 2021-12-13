@@ -36,6 +36,9 @@ public class ObfuscationServiceQuilt implements IObfuscationService {
 	public static final String IN_MAP_FILE = "inMapFile";
 	public static final String IN_MAP_EXTRA_FILES = "inMapExtraFiles";
 	public static final String OUT_MAP_FILE = "outMapFile";
+	public static final String SOURCE_NAMESPACE = "official";
+	public static final String INTERMEDIATE_NAMESPACE = "hashed";
+	public static final String NAMED_NAMESPACE = "named";
 
 	private String asSuffixed(String arg, String from, String to) {
 		return arg + MixinExtUtils.capitalize(from) + MixinExtUtils.capitalize(to);
@@ -60,12 +63,12 @@ public class ObfuscationServiceQuilt implements IObfuscationService {
 	@Override
 	public Set<String> getSupportedOptions() {
 		ImmutableSet.Builder<String> builder = new ImmutableSet.Builder<>();
-		addSupportedOptions(builder, "official", "intermediary");
-		addSupportedOptions(builder, "official", "named");
-		addSupportedOptions(builder, "intermediary", "official");
-		addSupportedOptions(builder, "intermediary", "named");
-		addSupportedOptions(builder, "named", "official");
-		addSupportedOptions(builder, "named", "intermediary");
+		addSupportedOptions(builder, SOURCE_NAMESPACE, INTERMEDIATE_NAMESPACE);
+		addSupportedOptions(builder, SOURCE_NAMESPACE, NAMED_NAMESPACE);
+		addSupportedOptions(builder, INTERMEDIATE_NAMESPACE, SOURCE_NAMESPACE);
+		addSupportedOptions(builder, INTERMEDIATE_NAMESPACE, NAMED_NAMESPACE);
+		addSupportedOptions(builder, NAMED_NAMESPACE, SOURCE_NAMESPACE);
+		addSupportedOptions(builder, NAMED_NAMESPACE, INTERMEDIATE_NAMESPACE);
 		return builder.build();
 	}
 
@@ -77,12 +80,12 @@ public class ObfuscationServiceQuilt implements IObfuscationService {
 	// Hook preserved for Mixin 0.7 backward compatibility
 	public Collection<ObfuscationTypeDescriptor> getObfuscationTypes() {
 		return ImmutableSet.of(
-				createObfuscationType("official", "intermediary"),
-				createObfuscationType("official", "named"),
-				createObfuscationType("intermediary", "official"),
-				createObfuscationType("intermediary", "named"),
-				createObfuscationType("named", "official"),
-				createObfuscationType("named", "intermediary")
+				createObfuscationType(SOURCE_NAMESPACE, INTERMEDIATE_NAMESPACE),
+				createObfuscationType(SOURCE_NAMESPACE, NAMED_NAMESPACE),
+				createObfuscationType(INTERMEDIATE_NAMESPACE, SOURCE_NAMESPACE),
+				createObfuscationType(INTERMEDIATE_NAMESPACE, NAMED_NAMESPACE),
+				createObfuscationType(NAMED_NAMESPACE, SOURCE_NAMESPACE),
+				createObfuscationType(NAMED_NAMESPACE, INTERMEDIATE_NAMESPACE)
 		);
 	}
 }
