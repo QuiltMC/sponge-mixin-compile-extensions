@@ -58,8 +58,7 @@ publishing {
 			artifactId project.archivesBaseName
 			version project.version
 
-			artifact sourcesJar
-			artifact javadocJar
+			from components.java
 		}
 	}
 
