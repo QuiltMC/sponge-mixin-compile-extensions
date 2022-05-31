@@ -24,13 +24,15 @@
 
 package org.quiltmc.loom.mixin;
 
-import com.google.common.collect.ImmutableSet;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.spongepowered.tools.obfuscation.interfaces.IMixinAnnotationProcessor;
 import org.spongepowered.tools.obfuscation.service.IObfuscationService;
 import org.spongepowered.tools.obfuscation.service.ObfuscationTypeDescriptor;
-
-import java.util.Collection;
-import java.util.Set;
 
 public class ObfuscationServiceQuilt implements IObfuscationService {
 	public static final String IN_MAP_FILE = "inMapFile";
@@ -51,22 +53,22 @@ public class ObfuscationServiceQuilt implements IObfuscationService {
 		);
 	}
 
-	private void addSupportedOptions(ImmutableSet.Builder<String> builder, String from, String to) {
-		builder.add(asSuffixed(ObfuscationServiceQuilt.IN_MAP_FILE, from, to));
-		builder.add(asSuffixed(ObfuscationServiceQuilt.IN_MAP_EXTRA_FILES, from, to));
-		builder.add(asSuffixed(ObfuscationServiceQuilt.OUT_MAP_FILE, from, to));
+	private void addSupportedOptions(Set<String> options, String from, String to) {
+		options.add(asSuffixed(ObfuscationServiceQuilt.IN_MAP_FILE, from, to));
+		options.add(asSuffixed(ObfuscationServiceQuilt.IN_MAP_EXTRA_FILES, from, to));
+		options.add(asSuffixed(ObfuscationServiceQuilt.OUT_MAP_FILE, from, to));
 	}
 
 	@Override
 	public Set<String> getSupportedOptions() {
-		ImmutableSet.Builder<String> builder = new ImmutableSet.Builder<>();
-		addSupportedOptions(builder, "official", "intermediary");
-		addSupportedOptions(builder, "official", "named");
-		addSupportedOptions(builder, "intermediary", "official");
-		addSupportedOptions(builder, "intermediary", "named");
-		addSupportedOptions(builder, "named", "official");
-		addSupportedOptions(builder, "named", "intermediary");
-		return builder.build();
+		Set<String> options = new HashSet<>();
+		addSupportedOptions(options, "official", "intermediary");
+		addSupportedOptions(options, "official", "named");
+		addSupportedOptions(options, "intermediary", "official");
+		addSupportedOptions(options, "intermediary", "named");
+		addSupportedOptions(options, "named", "official");
+		addSupportedOptions(options, "named", "intermediary");
+		return Collections.unmodifiableSet(options);
 	}
 
 	@Override
@@ -76,7 +78,7 @@ public class ObfuscationServiceQuilt implements IObfuscationService {
 
 	// Hook preserved for Mixin 0.7 backward compatibility
 	public Collection<ObfuscationTypeDescriptor> getObfuscationTypes() {
-		return ImmutableSet.of(
+		return Arrays.asList(
 				createObfuscationType("official", "intermediary"),
 				createObfuscationType("official", "named"),
 				createObfuscationType("intermediary", "official"),
